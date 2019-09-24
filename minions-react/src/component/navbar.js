@@ -4,7 +4,6 @@ import Navbar from 'react-bootstrap/Navbar'
 import Form from 'react-bootstrap/Form'
 import FormControl from 'react-bootstrap/FormControl'
 import Nav from 'react-bootstrap/Nav'
-import Button from 'react-bootstrap/Button'
 
 import Modal from './modal'
 
@@ -22,7 +21,6 @@ class AppNavbar extends Component{
                 </Nav>
                 <Nav.Link href="#link" disabled>Entrar</Nav.Link>
                 <Form inline>
-                  <Button variant="outline-success">Enviar Pedido</Button>
                   <Modal/>
                 </Form>
             </Navbar.Collapse>

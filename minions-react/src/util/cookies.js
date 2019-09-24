@@ -27,6 +27,7 @@ export function getCookie(cookieName) {
 
   export function getCookieMinionList(){
     var Cookie = getCookie("minions");
+    if(Cookie === "") return "";
     return JSON.parse(Cookie);
   }
 
@@ -45,7 +46,6 @@ export function getCookie(cookieName) {
     }
     var minions = JSON.parse(Cookie);
     minions.push({"id":minionData.id,"name":minionData.nome})
-    console.log(minions)
     Cookie = JSON.stringify(minions)
     setCookieDate("minions",Cookie,expires)
   }

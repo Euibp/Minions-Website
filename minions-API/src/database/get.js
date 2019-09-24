@@ -2,6 +2,7 @@
  const AWS = require('aws-sdk'); // eslint-disable-line import/no-extraneous-dependencies
 
  const dynamoDb = new AWS.DynamoDB.DocumentClient();
+ const myDomain = process.env.DOMAIN
  
 
 module.exports.get = (event, context, callback) => {
@@ -29,7 +30,7 @@ module.exports.get = (event, context, callback) => {
       const response = {
         statusCode: 200,
         headers: {
-          "Access-Control-Allow-Origin":"*",
+          'Access-Control-Allow-Origin': myDomain,
           "Access-Control-Allow-Credentials":"false",
           "Access-Control-Allow-Methods":"GET,OPTIONS",
           "Access-Control-Allow-Headers":"Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token",
