@@ -15,7 +15,8 @@ import {sendMinionsRequest} from '../util/send_email'
 class AppModal extends Component{
     state= {
         emailValue: '',
-        invalidemail:false
+        invalidemail:false,
+        sendingEmail:false
     }
 
     handleChange = this.handleChange.bind(this)
@@ -33,22 +34,25 @@ class AppModal extends Component{
     }
 
     render(){
-        const {emailValue,invalidemail} = this.state
+        const {emailValue,invalidemail,sendingEmail} = this.state
+        //TODO: MACARRONADA REFAZER
         var sendRequest = ()=>{
+            this.setState({sendingEmail: true})
             sendMinionsRequest(emailValue,"Cliente",this.props.modalList, 
             (result)=>{
                 if(result){
+                    this.setState({sendingEmail: true})
                     this.props.onHide()
                 }else
                 {
                     this.setState({
-                        invalidemail:true
+                        invalidemail:true,
+                        sendingEmail:false
                     })
                 }
             })
-           
-           
         }
+        
         return(
             <Modal show={this.props.show} onHide={this.props.onHide} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
                 <Modal.Header closeButton>
@@ -70,8 +74,8 @@ class AppModal extends Component{
                 
                 </Modal.Body>
                 <Modal.Footer>
-                {(emailValue === "" || invalidemail)
-                    ?<Button variant="secondary" disabled>Confirmar </Button> 
+                {(emailValue === "" || invalidemail || sendingEmail)
+                    ?<Button variant="secondary" disabled>{(sendingEmail)?"Enviando":"Confirmar"} </Button> 
                     :<Button variant="success" onClick={sendRequest}>Confirmar </Button>
                 }  
                 </Modal.Footer>
@@ -93,7 +97,7 @@ class AppModal extends Component{
     setModalShow(bool){
         if(bool === true){
             var newList = getCookieMinionList()
-            if(Array.isArray(newList) && !newList.length){
+            if(!Array.isArray(newList) || !newList.length){
                 bool = false
             } 
             this.setState({

@@ -5,11 +5,12 @@ import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import App from './pages/home';
-
 import uuid from 'uuid'
 
 import {getCookie, setCookie} from './util/cookies'
 import { BrowserRouter as Router } from "react-router-dom";
+
+
 
 var tempUserToken = getCookie("userToken");
 //setCookie("minions","",0);
