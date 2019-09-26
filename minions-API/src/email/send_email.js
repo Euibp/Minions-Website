@@ -34,10 +34,11 @@ function generateEmailParams (body) {
   if (!(title && name && content)) {
     throw new Error('Missing parameters! Make sure to add parameters \'email\', \'name\', \'content\'.')
   }
+  
   return {
     Source: myEmail,
     Destination: { ToAddresses: listEmails},
-    ReplyToAddresses: [myEmail],
+    //ReplyToAddresses: [myEmail],
     Message: {
       Body: {
         Text: {
