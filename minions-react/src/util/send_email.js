@@ -16,7 +16,6 @@ function post(url, body,callback) {
       callback(false);
     }
   });
-  console.log(JSON.stringify(body))
   req.send(JSON.stringify(body));
  
 }
@@ -43,7 +42,8 @@ export function sendMinionsRequest (email,name,buylist,callback){
         content: content,
         title: "Minion E-Commerce confirmando seu pedido"
     }
-
+    console.log(body)
+    
     post(send_url, body, callback)
 }
 

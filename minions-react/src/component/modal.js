@@ -8,7 +8,7 @@ import FormControl from 'react-bootstrap/FormControl'
 
 import React,{Component} from 'react'
 
-import {getCookieMinionList, getCookie} from '../util/cookies'
+import {getCookieMinionList, getCookie, setCookie} from '../util/cookies'
 import {sendMinionsRequest} from '../util/send_email'
 
 
@@ -41,6 +41,7 @@ class AppModal extends Component{
             sendMinionsRequest(emailValue,"Cliente",this.props.modalList, 
             (result)=>{
                 if(result){
+                    setCookie("email",emailValue,7)
                     this.setState({sendingEmail: true})
                     this.props.onHide()
                 }else
@@ -99,6 +100,7 @@ class AppModal extends Component{
             var newList = getCookieMinionList()
             if(!Array.isArray(newList) || !newList.length){
                 bool = false
+                newList = []
             } 
             this.setState({
                 modalShow: bool,

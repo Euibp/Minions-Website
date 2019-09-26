@@ -10,11 +10,12 @@ import uuid from 'uuid'
 import {getCookie, setCookie} from './util/cookies'
 import { BrowserRouter as Router } from "react-router-dom";
 
-
+//setCookie("userToken","",0);
 
 var tempUserToken = getCookie("userToken");
-//setCookie("minions","",0);
 if(tempUserToken === ""){
+  setCookie("minions","",0);
+  setCookie("email","",0);
   setCookie("userToken",uuid.v1(),7);
 }
 

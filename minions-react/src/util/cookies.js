@@ -31,33 +31,26 @@ export function getCookie(cookieName) {
     return JSON.parse(Cookie);
   }
 
-  
-  function setCookieDate(cookieName, cookieValue, expiresTime) {
-    document.cookie = cookieName + "=" + cookieValue + ";" + expiresTime + ";path=/";
-  }
-
 
   ///Funções da parte de cards
   export function addCookieMinion(minionData) {
     var Cookie = getCookie("minions");
-    var expires = getCookie("expires")
     if (Cookie === ""){
       Cookie = "[]"
     }
     var minions = JSON.parse(Cookie);
     minions.push({"id":minionData.id,"name":minionData.nome})
     Cookie = JSON.stringify(minions)
-    setCookieDate("minions",Cookie,expires)
+    setCookie("minions",Cookie,7)
   }
   
   export function removeCookieMinion(minionId){
     var Cookie = getCookie("minions");
-    var expires = getCookie("expires")
     if (Cookie === "") return false
     var minions = JSON.parse(Cookie);
     minions = minions.filter(item => item.id !== minionId)
     Cookie = JSON.stringify(minions)
-    setCookieDate("minions",Cookie,expires)
+    setCookie("minions",Cookie,7)
   
   }
 
